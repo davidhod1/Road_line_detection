@@ -35,15 +35,15 @@ def findAverageLines(image, lines):
                     length = np.sqrt((y2 - y1) ** 2 + (x2 - x1) ** 2)
                     if k < 0:
                         leftLines.append((k, c))
-                        leftWeights.append((length))
+                        leftWeights.append(length)
                     else:
                         rightLines.append((k, c))
-                        rightWeights.append((length))
+                        rightWeights.append(length)
 
-        left_lane = np.dot(leftWeights, leftLines) / np.sum(leftWeights) if len(leftWeights) > 0 else None
-        right_lane = np.dot(rightWeights, rightLines) / np.sum(rightWeights) if len(rightWeights) > 0 else None
+        leftLane = np.dot(leftWeights, leftLines) / np.sum(leftWeights) if len(leftWeights) > 0 else None
+        rightLane = np.dot(rightWeights, rightLines) / np.sum(rightWeights) if len(rightWeights) > 0 else None
 
-        for slope, intercept in [left_lane, right_lane]:
+        for slope, intercept in [leftLane, rightLane]:
 
             height = image.shape[0]
 
